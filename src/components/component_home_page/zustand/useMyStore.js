@@ -35,6 +35,20 @@ const useMyStore = create((set) => ({
     set((state) => ({
       korzina: state.korzina.filter((item) => item.mahsulot.id !== id),
     })),
+  increaseCount: (id) =>
+    set((state) => ({
+      korzina: state.korzina.map((item) =>
+        item.mahsulot.id === id ? { ...item, count: item.count + 1 } : item
+      ),
+    })),
+  decreaseCount: (id) =>
+    set((state) => ({
+      korzina: state.korzina.map((item) =>
+        item.mahsulot.id === id && item.count > 1
+          ? { ...item, count: item.count - 1 }
+          : item
+      ),
+    })),
 }));
 
 export default useMyStore;

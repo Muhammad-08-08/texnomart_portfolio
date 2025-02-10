@@ -6,6 +6,8 @@ function Savatcha({ savatcha, savatchaKatalog }) {
   const removeFromCart = useMyStore((state) => state.removeFromCart);
   const toggleLike = useMyStore((state) => state.toggleLike);
   const likeList = useMyStore((state) => state.like);
+  const increaseCount = useMyStore((state) => state.increaseCount);
+  const decreaseCount = useMyStore((state) => state.decreaseCount);
 
   return (
     <div className="fixed w-full h-screen top-0 left-0 flex justify-center items-center z-10">
@@ -34,9 +36,22 @@ function Savatcha({ savatcha, savatchaKatalog }) {
                       <p className="font-semibold">
                         {index + 1}. {item.mahsulot.name}
                       </p>
-                      <div className="flex items-center gap-5 py-1 px-6 bg-gray-100">
-                        <button className="text-2xl cursor-pointer">-</button>{" "}
-                        {item.count} <button className="text-xl curp">+</button>
+                      <div className="flex items-center gap-5 py-1 px-6 bg-gray-100 rounded-lg">
+                        <button
+                          className="text-2xl cursor-pointer px-2"
+                          onClick={() =>
+                            item.count > 1 && decreaseCount(item.mahsulot.id)
+                          }
+                        >
+                          -
+                        </button>
+                        <span className="text-lg">{item.count}</span>
+                        <button
+                          className="text-2xl cursor-pointer px-2"
+                          onClick={() => increaseCount(item.mahsulot.id)}
+                        >
+                          +
+                        </button>
                       </div>
                       <div className="flex flex-col items-center gap-4">
                         <FavouriteIcon
@@ -57,7 +72,6 @@ function Savatcha({ savatcha, savatchaKatalog }) {
               <p className="text-center text-gray-500">Savatcha bo'sh</p>
             )}
           </div>
-          <div></div>
         </div>
       </div>
     </div>
