@@ -31,6 +31,10 @@ const useMyStore = create((set) => ({
         return { like: [...state.like, item] };
       }
     }),
+  removeFromCart: (id) =>
+    set((state) => ({
+      korzina: state.korzina.filter((item) => item.mahsulot.id !== id),
+    })),
 }));
 
 export default useMyStore;

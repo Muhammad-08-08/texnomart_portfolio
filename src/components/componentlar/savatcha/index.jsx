@@ -1,4 +1,12 @@
+import { DeleteOutlined } from "@ant-design/icons";
+import FavouriteIcon from "../../../assets/favourite-stroke-rounded";
+import useMyStore from "../../component_home_page/zustand/useMyStore";
+
 function Savatcha({ savatcha, savatchaKatalog }) {
+  const removeFromCart = useMyStore((state) => state.removeFromCart);
+  const toggleLike = useMyStore((state) => state.toggleLike);
+  const likeList = useMyStore((state) => state.like);
+
   return (
     <div className="fixed w-full h-screen top-0 left-0 flex justify-center items-center z-10">
       <div
@@ -7,29 +15,49 @@ function Savatcha({ savatcha, savatchaKatalog }) {
       ></div>
       <div className="w-[80%] py-10 bg-white rounded-lg shadow-lg">
         <h2 className="text-center text-2xl font-bold mb-5">Savatcha</h2>
-        <div className="max-h-[500px] overflow-y-auto px-5">
-          {savatcha.length > 0 ? (
-            savatcha.map((item, index) => (
-              <div
-                key={item.mahsulot.id}
-                className="flex items-center gap-5 border-b py-3"
-              >
-                <img
-                  src={item.mahsulot.image}
-                  alt={item.mahsulot.name}
-                  className="w-16 h-16 object-contain"
-                />
-                <div>
-                  <p className="font-semibold">
-                    {index + 1}. {item.mahsulot.name}
-                  </p>
-                  <p className="text-gray-500">Soni: {item.count}</p>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500">Savatcha bo'sh</p>
-          )}
+        <div>
+          <div className="max-h-[500px] overflow-y-auto px-5">
+            {savatcha.length > 0 ? (
+              savatcha.map((item, index) => {
+                const isLiked = likeList.some((l) => l.id === item.mahsulot.id);
+                return (
+                  <div
+                    key={item.mahsulot.id}
+                    className="flex items-center gap-5 py-3"
+                  >
+                    <img
+                      src={item.mahsulot.image}
+                      alt={item.mahsulot.name}
+                      className="w-16 h-16 object-contain"
+                    />
+                    <div className="flex-1 flex gap-20 items-center">
+                      <p className="font-semibold">
+                        {index + 1}. {item.mahsulot.name}
+                      </p>
+                      <div className="flex items-center gap-5 py-1 px-6 bg-gray-100">
+                        <button className="text-2xl cursor-pointer">-</button>{" "}
+                        {item.count} <button className="text-xl curp">+</button>
+                      </div>
+                      <div className="flex flex-col items-center gap-4">
+                        <FavouriteIcon
+                          onClick={() => toggleLike(item.mahsulot)}
+                          className="cursor-pointer"
+                          like={isLiked ? "red" : "white"}
+                        />
+                        <DeleteOutlined
+                          onClick={() => removeFromCart(item.mahsulot.id)}
+                          className="cursor-pointer text-red-500 hover:text-red-700 text-xl"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p className="text-center text-gray-500">Savatcha bo'sh</p>
+            )}
+          </div>
+          <div></div>
         </div>
       </div>
     </div>
