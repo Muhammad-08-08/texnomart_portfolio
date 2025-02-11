@@ -11,7 +11,6 @@ function Kardlar() {
         "https://gw.texnomart.uz/api/web/v1/home/special-products?type=hit_products"
       )
       .then((response) => {
-        console.log(response.data.data.data);
         setkard(response.data.data.data);
       });
   }, []);
