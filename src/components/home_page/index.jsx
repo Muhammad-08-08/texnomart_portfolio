@@ -1,12 +1,10 @@
-import CardPage from "../component_home_page/card";
 import CarouselPage from "../component_home_page/carousel";
 import Kardlar from "../component_home_page/kardlar";
 
 function HomePage() {
   return (
-    <div>
+    <div className="container mx-auto">
       <CarouselPage />
-      {/* <CardPage /> */}
       <Kardlar />
     </div>
   );

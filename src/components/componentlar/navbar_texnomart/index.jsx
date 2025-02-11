@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import useMyStore from "../../component_home_page/zustand/useMyStore";
 import Savatcha from "../savatcha";
 import LikePage from "../like";
+import { Link } from "react-router";
 
 function NavbarTexnomart() {
   const [katalog, setKatalog] = useState(false);
@@ -31,7 +32,9 @@ function NavbarTexnomart() {
     <div className="container mx-auto px-10">
       <div className="container mx-auto mt-6 flex justify-between">
         <div className="flex gap-6 items-center">
-          <img src={texnomart_logo} alt="texnomart logo" />
+          <Link to={"/"}>
+            <img className="cursor-pointer" src={texnomart_logo} alt="texnomart logo" />
+          </Link>
           <button
             onClick={() => setKatalog(!katalog)}
             className="px-6 py-2 bg-orange-500 text-black/70 font-bold text-xl flex gap-3 items-center cursor-pointer rounded-lg hover:text-white transition-all duration-1000"

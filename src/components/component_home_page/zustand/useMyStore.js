@@ -3,6 +3,9 @@ import { create } from "zustand";
 const useMyStore = create((set) => ({
   korzina: [],
   like: [],
+  page: {},
+
+  setPage: (data) => set({ page: data }),
 
   addToCart: (item) =>
     set((state) => {
