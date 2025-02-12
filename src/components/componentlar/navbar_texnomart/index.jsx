@@ -33,7 +33,11 @@ function NavbarTexnomart() {
       <div className="container mx-auto mt-6 flex justify-between">
         <div className="flex gap-6 items-center">
           <Link to={"/"}>
-            <img className="cursor-pointer" src={texnomart_logo} alt="texnomart logo" />
+            <img
+              className="cursor-pointer"
+              src={texnomart_logo}
+              alt="texnomart logo"
+            />
           </Link>
           <button
             onClick={() => setKatalog(!katalog)}
@@ -86,8 +90,9 @@ function NavbarTexnomart() {
 
       {katalog && <Katalog />}
       {katalogSavatcha && (
-        <Savatcha savatchaKatalog={setKatalogSavatcha} savatcha={savatcha} />
+        <Savatcha savatcha={savatcha} savatchaKatalog={setKatalogSavatcha} />
       )}
+
       {likeOyna && <LikePage likeKatalog={setLikeOyna} like={like} />}
     </div>
   );

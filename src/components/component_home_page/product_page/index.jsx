@@ -1,18 +1,161 @@
+import {
+  InfoCircleFilled,
+  LeftOutlined,
+  RightOutlined,
+} from "@ant-design/icons";
+import { Carousel } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import useMyStore from "../zustand/useMyStore";
 
 function ProductPage() {
   const [product, setProduct] = useState();
   const { id } = useParams();
+
   useEffect(() => {
     axios
       .get(`https://gw.texnomart.uz/api/web/v1/product/detail?id=${id}`)
       .then((response) => {
+        setProduct(response.data.data.data);
         console.log(response.data.data.data);
       });
   }, []);
-  return <div>ProductPage</div>;
+
+  const addToCart = useMyStore((state) => state.addToCart);
+
+  if (!product) {
+    return <div className="text-center text-lg font-semibold">Loading...</div>;
+  }
+
+  return (
+    <div className="container mx-auto px-10 mt-8 flex gap-10 justify-between items-center">
+      <div>
+        <h2 className="text-2xl font-mono">{product.name}</h2>
+        <div className="relative max-w-sm w-full h-auto mx-auto">
+          <Carousel arrows className="relative">
+            {product.small_images.map((item, index) => (
+              <div key={index} className="relative">
+                <img
+                  src={item}
+                  alt=""
+                  className="w-full h-[400px] object-cover rounded-lg"
+                />
+              </div>
+            ))}
+          </Carousel>
+
+          <button
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-red-500 transition z-10 cursor-pointer"
+            onClick={() => document.querySelector(".slick-prev")?.click()}
+          >
+            <LeftOutlined className="text-xl" />
+          </button>
+
+          <button
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-red-500 transition z-10 cursor-pointer"
+            onClick={() => document.querySelector(".slick-next")?.click()}
+          >
+            <RightOutlined className="text-xl" />
+          </button>
+        </div>
+      </div>
+      <div className="w-[450px] flex flex-col gap-3">
+        <h3 className="text-lg font-medium">Mahsulot haqida qisqacha</h3>
+        {product.main_characters.map((i, index) => (
+          <div key={index} className="flex justify-between gap-2">
+            <p className="whitespace-nowrap">{i.name}</p>
+            <span className="flex-1 border-b border-dashed"></span>
+            <p className="whitespace-nowrap">{i.value}</p>
+          </div>
+        ))}
+      </div>
+      <div className="w-[450px] bg-white p-5 rounded-2xl shadow-lg">
+        <h2 className="text-3xl font-bold">
+          {Math.floor(product.sale_price).toLocaleString("ru")}{" "}
+          <span className="text-gray-500 text-xl">so'm</span>
+        </h2>
+
+        <div className="flex items-center bg-gray-100 p-3 rounded-lg mt-3">
+          <span className="text-gray-600 text-sm">Muddatli to'lov</span>
+          <span className="bg-blue-500 text-white font-semibold text-lg px-3 py-1 rounded-lg mx-2">
+            {Math.floor(product.sale_price / 12).toLocaleString("ru")}
+          </span>
+          <span className="text-gray-600">12 /oy</span>
+          <InfoCircleFilled size={16} className="text-gray-400 ml-2" />
+        </div>
+
+        <p className="text-gray-600 text-sm mt-2">
+          Buyurtmani rasmiylashtirishda 12 oydan 24 oygacha muddatli to'lovni
+          tanlashingiz mumkin
+        </p>
+
+        <div className="flex gap-3 mt-4">
+          <button
+            onClick={() =>
+              addToCart({
+                ...product,
+                image: product.large_images[0],
+              })
+            }
+            className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 rounded-lg cursor-pointer"
+          >
+            Savatchaga
+          </button>
+          <button className="flex-1 bg-gray-200 hover:bg-gray-300 text-black font-semibold py-3 rounded-lg cursor-pointer">
+            Birgina klik orqali harid
+          </button>
+        </div>
+
+        <p className="text-gray-500 text-sm mt-4">
+          Muddatli to‘lov rasmiylashtirayotganda bizdan va hamkorlardan eng
+          maqbul takliflarga ega bo‘ling.
+        </p>
+
+        <div className="flex gap-3 mt-3">
+          <img
+            src="https://mini-io-api.texnomart.uz/order/order/loan-system/1/95d6e4b5-cc9e-4cb1-b7be-9af419c5d094.png"
+            alt="Axiom"
+            className="h-10"
+          />
+          <img
+            src="https://mini-io-api.texnomart.uz/order/order/loan-system/8/9451a313-9349-4cce-bdf7-50eb92b28db2.png"
+            alt="Tehnoboon"
+            className="h-10"
+          />
+          <img
+            src="https://mini-io-api.texnomart.uz/order/order/loan-system/11/6c0315e8-3c60-4e6b-b470-6664bececd3f.png"
+            alt="Payme"
+            className="h-10"
+          />
+          <img
+            src="https://mini-io-api.texnomart.uz/order/order/loan-system/11/6c0315e8-3c60-4e6b-b470-6664bececd3f.png"
+            alt="Alif"
+            className="h-10"
+          />
+          <img
+            src="https://mini-io-api.texnomart.uz/order/order/loan-system/12/89946328-85c8-4fbb-9d9d-6e00511d3b23.png"
+            alt="Solfy"
+            className="h-10"
+          />
+          <img
+            src="https://mini-io-api.texnomart.uz/order/order/loan-system/9/ce619468-77a8-4cd0-b34f-be34a3342d98.png"
+            alt="Anorb"
+            className="h-10"
+          />
+        </div>
+
+        <div className="flex flex-col bg-gray-100 p-3 rounded-lg mt-5">
+          <span className="font-semibold text-gray-800">
+            Do'kondan olib ketish bepul
+          </span>
+          <span className="text-blue-600 cursor-pointer">
+            36 do'konda mavjud
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default ProductPage;
