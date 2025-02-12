@@ -19,9 +19,8 @@ function Kardlar() {
   return (
     <div className="flex px-10 flex-wrap gap-4 justify-between py-10">
       {kard.map((item) => (
-        <Link to={`/products/${item.id}`}>
+        <Link key={item.id} to={`/products/${item.id}`}>
           <CardPage
-            key={item.id}
             imgUrl={item.image}
             imgName={item.name}
             name={item.name}

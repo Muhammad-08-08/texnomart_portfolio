@@ -3,9 +3,6 @@ import { create } from "zustand";
 const useMyStore = create((set) => ({
   korzina: [],
   like: [],
-  page: {},
-
-  setPage: (data) => set({ page: data }),
 
   addToCart: (item) =>
     set((state) => {
@@ -34,16 +31,19 @@ const useMyStore = create((set) => ({
         return { like: [...state.like, item] };
       }
     }),
+
   removeFromCart: (id) =>
     set((state) => ({
       korzina: state.korzina.filter((item) => item.mahsulot.id !== id),
     })),
+
   increaseCount: (id) =>
     set((state) => ({
       korzina: state.korzina.map((item) =>
         item.mahsulot.id === id ? { ...item, count: item.count + 1 } : item
       ),
     })),
+
   decreaseCount: (id) =>
     set((state) => ({
       korzina: state.korzina.map((item) =>
