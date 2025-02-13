@@ -13,6 +13,7 @@ function App() {
         <Route path="/products/:id" element={<ProductPage />} />
         <Route path="/top-category/:slug" element={<TopCategoriesPage />} />
         <Route path="/top-categoriec/:id" element={<ProductPage />} />
+        <Route path="/acsessuar/:id" element={<ProductPage />} />
       </Routes>
     </div>
   );
