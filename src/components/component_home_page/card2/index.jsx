@@ -1,15 +1,18 @@
-import { ShoppingCartOutlined } from "@ant-design/icons";
-import { Card } from "antd";
-import useMyStore from "../../component_home_page/zustand/useMyStore";
-import FavouriteIcon from "../../../assets/favourite-stroke-rounded";
+import { Button, Card } from "antd";
+import { Color } from "antd/es/color-picker";
+import React from "react";
 
-function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
-  const toggleLike = useMyStore((state) => state.toggleLike);
-  const savatga_qoshish = useMyStore((state) => state.savatga_qoshish);
-  const likeList = useMyStore((state) => state.like);
-
-  const isLiked = likeList.some((l) => l.id === item.id);
-
+function CardPage2({ imgName, imgUrl, name, month_price, sale_price, item }) {
+  const DEFAULT_COLOR = [
+    {
+      color: "rgb(16, 142, 233)",
+      percent: 0,
+    },
+    {
+      color: "rgb(135, 208, 104)",
+      percent: 100,
+    },
+  ];
   return (
     <Card hoverable style={{ width: 240 }}>
       <div className="h-[250px] bg-gray-100 relative">
@@ -22,12 +25,10 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
           like={isLiked ? "red" : "white"}
         />
       </div>
-      <p>{name.slice(0, 25)}...</p>
+      <p>{name}</p>
       <h4 className="px-2 py-1 bg-gray-200 rounded-xl mt-5">{month_price}</h4>
       <div className="mt-8 flex justify-between">
-        <h4 className="text-lg font-bold">
-          {sale_price.toLocaleString("ru")} so'm
-        </h4>
+        <h4 className="text-lg font-bold">{sale_price} so'm</h4>
 
         <button
           onClick={(e) => {
@@ -35,11 +36,13 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
           }}
           className="px-2 py-1 border-2 border-amber-400 rounded-xl cursor-pointer"
         >
-          <ShoppingCartOutlined className="cursor-pointer" />
+          <Button defaultValue={DEFAULT_COLOR} variant="outlined">
+            Savatchaga
+          </Button>
         </button>
       </div>
     </Card>
   );
 }
 
-export default CardPage;
+export default CardPage2;
