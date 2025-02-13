@@ -22,7 +22,7 @@ function ProductPage() {
       });
   }, []);
 
-  const addToCart = useMyStore((state) => state.addToCart);
+  const savatga_qoshish = useMyStore((state) => state.savatga_qoshish);
 
   if (!product) {
     return <div className="text-center text-lg font-semibold">Loading...</div>;
@@ -93,7 +93,7 @@ function ProductPage() {
         <div className="flex gap-3 mt-4">
           <button
             onClick={() =>
-              addToCart({
+              savatga_qoshish({
                 ...product,
                 image: product.large_images[0],
               })

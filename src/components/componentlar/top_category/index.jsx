@@ -21,21 +21,26 @@ function TopCategoriesPage() {
     return <div>yuklanmoqda</div>;
   }
   return (
-    <div className="container mx-auto px-10 flex flex-wrap gap-6">
-      {categories.map((item) => {
-        return (
-          <Link to={`/top-categoriec/${item.id}`} key={item.id}>
-            <CardPage
-              imgUrl={item.image}
-              imgName={item.name}
-              name={item.name}
-              month_price={item.axiom_monthly_price}
-              sale_price={item.sale_price}
-              item={item}
-            />
-          </Link>
-        );
-      })}
+    <div className="container mx-auto px-10">
+      <div>
+
+      </div>
+      <div className="flex justify-between flex-wrap gap-6">
+        {categories.map((item) => {
+          return (
+            <Link to={`/top-categoriec/${item.id}`} key={item.id}>
+              <CardPage
+                imgUrl={item.image}
+                imgName={item.name}
+                name={item.name}
+                month_price={item.axiom_monthly_price}
+                sale_price={item.sale_price}
+                item={item}
+              />
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }

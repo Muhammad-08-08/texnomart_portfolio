@@ -5,7 +5,7 @@ import FavouriteIcon from "../../../assets/favourite-stroke-rounded";
 
 function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
   const toggleLike = useMyStore((state) => state.toggleLike);
-  const addToCart = useMyStore((state) => state.addToCart);
+  const savatga_qoshish = useMyStore((state) => state.savatga_qoshish);
   const likeList = useMyStore((state) => state.like);
 
   const isLiked = likeList.some((l) => l.id === item.id);
@@ -29,7 +29,7 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
 
         <button
           onClick={(e) => {
-            e.preventDefault(), addToCart(item);
+            e.preventDefault(), savatga_qoshish(item);
           }}
           className="px-2 py-1 border-2 border-amber-400 rounded-xl cursor-pointer"
         >

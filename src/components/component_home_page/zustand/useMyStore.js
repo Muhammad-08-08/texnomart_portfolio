@@ -4,7 +4,7 @@ const useMyStore = create((set) => ({
   korzina: [],
   like: [],
 
-  addToCart: (item) =>
+  savatga_qoshish: (item) =>
     set((state) => {
       const bormi = state.korzina.find((s) => s.mahsulot.id === item.id);
       if (bormi) {
