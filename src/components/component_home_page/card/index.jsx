@@ -15,7 +15,9 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
       <div className="h-[250px] bg-gray-100 relative">
         <img alt={imgName} src={imgUrl} />
         <FavouriteIcon
-          onClick={() => toggleLike(item)}
+          onClick={(e) => {
+            e.preventDefault(), toggleLike(item);
+          }}
           className="cursor-pointer absolute -right-1.5 -top-1.5"
           like={isLiked ? "red" : "white"}
         />
@@ -26,7 +28,9 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
         <h4 className="text-lg font-bold">{sale_price} so'm</h4>
 
         <button
-          onClick={() => addToCart(item)}
+          onClick={(e) => {
+            e.preventDefault(), addToCart(item);
+          }}
           className="px-2 py-1 border-2 border-amber-400 rounded-xl cursor-pointer"
         >
           <ShoppingCartOutlined className="cursor-pointer" />

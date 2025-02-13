@@ -1,7 +1,7 @@
 import { Card } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 function TopCategoriesPage() {
   const { slug } = useParams();
@@ -23,16 +23,18 @@ function TopCategoriesPage() {
     <div className="container mx-auto px-10 flex flex-wrap gap-6">
       {categories.map((item) => {
         return (
-          <Card
-            key={item.id}
-            hoverable
-            style={{ width: 250 }}
-            cover={
-              <img className="w-[400px] " src={item.image} alt={item.name} />
-            }
-          >
-            <h4>{item.name}</h4>
-          </Card>
+          <Link to={"/top-categoriec"} key={item.id}>
+            <Card
+              key={item.id}
+              hoverable
+              style={{ width: 250 }}
+              cover={
+                <img className="w-[400px] " src={item.image} alt={item.name} />
+              }
+            >
+              <h4>{item.name}</h4>
+            </Card>
+          </Link>
         );
       })}
     </div>
