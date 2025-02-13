@@ -18,7 +18,6 @@ function ProductPage() {
       .get(`https://gw.texnomart.uz/api/web/v1/product/detail?id=${id}`)
       .then((response) => {
         setProduct(response.data.data.data);
-        console.log(response.data.data.data);
       });
   }, []);
 
