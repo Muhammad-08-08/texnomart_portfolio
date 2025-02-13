@@ -12,6 +12,7 @@ import Aksessuar from "../aksesuar";
 
 function ProductPage() {
   const [product, setProduct] = useState();
+  const [tafsilot, setTafsilot] = useState();
   const { id } = useParams();
 
   useEffect(() => {
@@ -23,9 +24,17 @@ function ProductPage() {
       });
   }, [id]);
 
+  useEffect(() => {
+    axios
+      .get("https://gw.texnomart.uz/api/web/v1/product/characters?id=356796")
+      .then((response) => {
+        console.log(response.data);
+      });
+  }, []);
+
   const savatga_qoshish = useMyStore((state) => state.savatga_qoshish);
 
-  if (!product) {
+  if (!product && !tafsilot) {
     return <div className="text-center text-lg font-semibold">Loading...</div>;
   }
 
@@ -156,6 +165,10 @@ function ProductPage() {
             </span>
           </div>
         </div>
+      </div>
+      <div>
+        <h2 className="text-xl font-medium">Mahsulot xususiyatlari</h2>
+        <div>{tafsilot}</div>
       </div>
       <div>
         <h2 className="text-2xl font-bold py-6">Aksessuarlar</h2>
