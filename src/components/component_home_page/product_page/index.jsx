@@ -1,4 +1,6 @@
 import {
+  ArrowDownOutlined,
+  ArrowUpOutlined,
   InfoCircleFilled,
   LeftOutlined,
   RightOutlined,
@@ -13,6 +15,9 @@ import Aksessuar from "../aksesuar";
 function ProductPage() {
   const [product, setProduct] = useState();
   const [tafsilot, setTafsilot] = useState();
+  const [tafsilot2, setTafsilot2] = useState({});
+  const [tafsilotHeight, setTafsilotHeight] = useState(false);
+  const [tafsilotHeight2, setTafsilotHeight2] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -26,15 +31,24 @@ function ProductPage() {
 
   useEffect(() => {
     axios
-      .get("https://gw.texnomart.uz/api/web/v1/product/characters?id=356796")
+      .get(`https://gw.texnomart.uz/api/web/v1/product/characters?id=${id}`)
       .then((response) => {
-        console.log(response.data);
+        setTafsilot(response.data.data.data);
       });
-  }, []);
+  }, [id]);
+
+  useEffect(() => {
+    axios
+      .get(`https://gw.texnomart.uz/api/web/v1/product/description?id=${id}`)
+      .then((response) => {
+        setTafsilot2(response.data);
+        console.log(response.data.data);
+      });
+  }, [id]);
 
   const savatga_qoshish = useMyStore((state) => state.savatga_qoshish);
 
-  if (!product && !tafsilot) {
+  if (!product || !tafsilot) {
     return <div className="text-center text-lg font-semibold">Loading...</div>;
   }
 
@@ -42,7 +56,7 @@ function ProductPage() {
     <div className="container mx-auto px-10 mt-8">
       <div className="flex gap-10 justify-between items-center">
         <div>
-          <h2 className="text-2xl font-mono">{product.name}</h2>
+          <h2 className="text-2xl font-mono mb-4">{product.name}</h2>
           <div className="relative max-w-sm w-full h-auto mx-auto">
             <Carousel draggable arrows className="relative">
               {product.small_images.map((item, index) => (
@@ -166,10 +180,72 @@ function ProductPage() {
           </div>
         </div>
       </div>
-      <div>
+
+      <div className="relative py-6">
         <h2 className="text-xl font-medium">Mahsulot xususiyatlari</h2>
-        <div>{tafsilot}</div>
+        <div
+          className={`w-full my-4 ${
+            tafsilotHeight ? "h-auto" : "h-[200px] overflow-hidden my-4"
+          }`}
+        >
+          {tafsilot.map((item_tafsilot, index) => {
+            return (
+              <div key={index}>
+                <h3 className="text-lg font-medium my-6">
+                  {item_tafsilot.name}
+                </h3>
+                <div className="w-[70%] flex flex-wrap gap-4.5 justify-between mt-5">
+                  {item_tafsilot.characters.map((i, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="w-[400px] flex border-b border-dashed border-b-gray-300 pb-2"
+                      >
+                        <p className="text-gray-500 flex-1">{i.name}</p>
+                        <p className="text-gray-500 flex-1 text-left">
+                          {i.value}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <p
+          onClick={() => {
+            setTafsilotHeight(!tafsilotHeight);
+          }}
+          className="text-blue-600 absolute bottom-0 cursor-pointer"
+        >
+          {tafsilotHeight ? "Qisqacha" : "Batafsil"}
+          {tafsilotHeight ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+        </p>
       </div>
+      <div className="relative py-2">
+        <h3 className="my-4 font-medium text-lg">Tavsif</h3>
+        <div>
+          <div
+            className={`w-full my-3 leading-8 ${
+              tafsilotHeight2
+                ? "h-auto py-2"
+                : "h-[100px] overflow-hidden shadow"
+            }`}
+            dangerouslySetInnerHTML={{ __html: tafsilot2?.data?.data }}
+          />
+          <p
+            onClick={() => {
+              setTafsilotHeight2(!tafsilotHeight2);
+            }}
+            className="text-blue-600 absolute bottom-0 cursor-pointer"
+          >
+            {tafsilotHeight2 ? "Qisqacha" : "Batafsil"}
+            {tafsilotHeight2 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+          </p>
+        </div>
+      </div>
+
       <div>
         <h2 className="text-2xl font-bold py-6">Aksessuarlar</h2>
         <div>
