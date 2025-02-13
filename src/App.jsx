@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/products/:id" element={<ProductPage />} />
         <Route path="/top-category/:slug" element={<TopCategoriesPage />} />
+        <Route path="/top-categoriec/:id" element={<ProductPage />} />
       </Routes>
     </div>
   );
