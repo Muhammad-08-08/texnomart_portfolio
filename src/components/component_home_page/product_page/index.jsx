@@ -62,20 +62,6 @@ function ProductPage() {
                 </div>
               ))}
             </Carousel>
-
-            <button
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-red-500 transition z-10 cursor-pointer"
-              onClick={() => document.querySelector(".slick-prev")?.click()}
-            >
-              <LeftOutlined className="text-xl" />
-            </button>
-
-            <button
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-red-500 transition z-10 cursor-pointer"
-              onClick={() => document.querySelector(".slick-next")?.click()}
-            >
-              <RightOutlined className="text-xl" />
-            </button>
           </div>
         </div>
         <div className="w-[450px] flex flex-col gap-3">
@@ -89,6 +75,9 @@ function ProductPage() {
           ))}
         </div>
         <div className="w-[450px] bg-white p-5 rounded-2xl shadow-lg">
+
+
+          
           <h2 className="text-3xl font-bold">
             {Math.floor(product.sale_price).toLocaleString("ru")}{" "}
             <span className="text-gray-500 text-xl">so'm</span>
