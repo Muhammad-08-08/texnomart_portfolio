@@ -27,22 +27,15 @@ function ProductPage() {
       .then((response) => {
         setProduct(response.data.data.data);
       });
-  }, [id]);
-
-  useEffect(() => {
     axios
       .get(`https://gw.texnomart.uz/api/web/v1/product/characters?id=${id}`)
       .then((response) => {
         setTafsilot(response.data.data.data);
       });
-  }, [id]);
-
-  useEffect(() => {
     axios
       .get(`https://gw.texnomart.uz/api/web/v1/product/description?id=${id}`)
       .then((response) => {
         setTafsilot2(response.data);
-        console.log(response.data.data);
       });
   }, [id]);
 

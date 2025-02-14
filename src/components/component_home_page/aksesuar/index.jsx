@@ -40,11 +40,20 @@ function Aksessuar({ productId }) {
           );
         })}
       </div>
-      <div className="flex gap-6 justify-between overflow-auto">
+      <div className="flex gap-6 overflow-auto">
         {" "}
         {acsessuar?.[acsessuarCard]?.products?.map((item_card) => {
           return (
-            <Link to={`/acsessuar/${item_card.id}`} key={item_card.id}>
+            <Link
+              to={`/acsessuar/${item_card.id}`}
+              key={item_card.id}
+              onClick={() => {
+                window.scrollTo({
+                  behavior: "smooth",
+                  top: 0,
+                });
+              }}
+            >
               <CardPage
                 imgUrl={item_card.image}
                 imgName={item_card.name}

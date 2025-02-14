@@ -33,7 +33,16 @@ function TopCategoriesPage() {
       <div className="flex justify-between flex-wrap gap-6">
         {categories.products.map((item) => {
           return (
-            <Link to={`/top-categoriec/${item.id}`} key={item.id}>
+            <Link
+              to={`/top-categoriec/${item.id}`}
+              key={item.id}
+              onClick={() => {
+                window.scrollTo({
+                  behavior: "smooth",
+                  top: 0,
+                });
+              }}
+            >
               <CardPage
                 imgUrl={item.image}
                 imgName={item.name}
