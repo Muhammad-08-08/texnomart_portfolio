@@ -23,9 +23,11 @@ function NavbarTexnomart() {
   const like = useMyStore((state) => state.like);
 
   useEffect(() => {
-    document.body.style.overflow = katalog ? "hidden" : "";
-    document.body.style.overflow = katalogSavatcha ? "hidden" : "";
-    document.body.style.overflow = likeOyna ? "hidden" : "";
+    if (katalog || katalogSavatcha || likeOyna) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
   }, [katalog, katalogSavatcha, likeOyna]);
 
   return (

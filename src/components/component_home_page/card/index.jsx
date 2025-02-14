@@ -10,12 +10,16 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
 
   const isLiked = likeList.some((l) => l.id === item.id);
 
-  const imgHeight = imgName > 95 ? "h-[95%]" : "h-auto my-auto";
+  const imgHeight = Number(imgName) > 95 ? "h-[85%]" : "h-auto my-auto";
 
   return (
     <Card hoverable style={{ width: 240 }}>
       <div className="h-[250px] bg-gray-100 relative">
-        <img className={`${imgHeight} mx-auto`} alt={imgName} src={imgUrl} />
+        <img
+          className={`${imgHeight} mx-auto h-full`}
+          alt={imgName}
+          src={imgUrl}
+        />
         <FavouriteIcon
           onClick={(e) => {
             e.preventDefault(), toggleLike(item);
