@@ -40,7 +40,7 @@ function Aksessuar({ productId }) {
           );
         })}
       </div>
-      <div className="flex gap-6 overflow-auto">
+      <div className="flex gap-6 overflow-x-auto">
         {" "}
         {acsessuar?.[acsessuarCard]?.products?.map((item_card) => {
           return (
