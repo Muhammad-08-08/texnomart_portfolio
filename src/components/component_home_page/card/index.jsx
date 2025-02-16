@@ -28,7 +28,7 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
           like={isLiked ? "red" : "white"}
         />
       </div>
-      <p className="mt-2">{name.slice(0, 35)}...</p>
+      <p className="mt-2">{name.slice(0, 25)}...</p>
       <h4 className="px-2 py-1 bg-gray-200 rounded-xl mt-5">{month_price}</h4>
       <div className="mt-4 flex justify-between">
         <h4 className="text-lg font-bold">

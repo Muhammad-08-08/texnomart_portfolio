@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import CardPage from "../../component_home_page/card";
 import CardPage2 from "../../component_home_page/card2";
+import YaqindaKorilganlar from "../yaqinda_korib_chiqilgan_mahsulotlar";
 
 function TopCategoriesPage() {
   const { slug } = useParams();
@@ -19,7 +20,6 @@ function TopCategoriesPage() {
       )
       .then((response) => {
         setCategories(response.data.data);
-        console.log(response.data.data);
       });
   }, [slug, currentPage]);
 
@@ -44,9 +44,7 @@ function TopCategoriesPage() {
       </div>
       <div
         className={`${
-          filtred
-            ? "flex justify-between flex-wrap gap-6"
-            : "flex flex-col gap-6 mt-3"
+          filtred ? "flex flex-wrap gap-14.5" : "flex flex-col gap-6 mt-3"
         }`}
       >
         {filtred
@@ -115,6 +113,9 @@ function TopCategoriesPage() {
             setCurrentPage(page);
           }}
         />
+      </div>
+      <div className="w-full overflow-x-auto">
+        <YaqindaKorilganlar />
       </div>
     </div>
   );

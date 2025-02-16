@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import CardPage from "../card";
+import CardPage from "../../component_home_page/card";
 import { Link } from "react-router";
 import { Button } from "antd";
 

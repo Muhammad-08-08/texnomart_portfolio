@@ -10,7 +10,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useMyStore from "../zustand/useMyStore";
-import Aksessuar from "../aksesuar";
+import Aksessuar from "../../qoshimcha_componentlar/aksesuar";
+import DokonlardaMavjudligi from "../../qoshimcha_componentlar/dokonlarda_mavjudligi";
 
 function ProductPage() {
   const [product, setProduct] = useState();
@@ -226,9 +227,10 @@ function ProductPage() {
       </div>
 
       <div>
-        <div>
-          <Aksessuar productId={id} />
-        </div>
+        <Aksessuar productId={id} />
+      </div>
+      <div>
+        <DokonlardaMavjudligi productId={id} />
       </div>
     </div>
   );
