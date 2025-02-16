@@ -7,7 +7,6 @@ function HomePage() {
     <div className="container mx-auto">
       <CarouselPage />
       <Kardlar />
-      <CardPage2 />
     </div>
   );
 }

@@ -12,6 +12,8 @@ import { useParams } from "react-router";
 import useMyStore from "../zustand/useMyStore";
 import Aksessuar from "../../qoshimcha_componentlar/aksesuar";
 import DokonlardaMavjudligi from "../../qoshimcha_componentlar/dokonlarda_mavjudligi";
+import YaqindaKorilganlar from "../../qoshimcha_componentlar/yaqinda_korib_chiqilgan_mahsulotlar";
+import saqlashMahsulot from "../../qoshimcha_componentlar/saqlashMahsulotlar";
 
 function ProductPage() {
   const [product, setProduct] = useState();
@@ -38,6 +40,12 @@ function ProductPage() {
       .then((response) => {
         setTafsilot2(response.data);
       });
+  }, [id]);
+
+  useEffect(() => {
+    if (id) {
+      saqlashMahsulot(id);
+    }
   }, [id]);
 
   const savatga_qoshish = useMyStore((state) => state.savatga_qoshish);
@@ -231,6 +239,9 @@ function ProductPage() {
       </div>
       <div>
         <DokonlardaMavjudligi productId={id} />
+      </div>
+      <div>
+        <YaqindaKorilganlar />
       </div>
     </div>
   );

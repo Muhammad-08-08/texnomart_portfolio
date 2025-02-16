@@ -40,7 +40,7 @@ function CardPage2({
       </div>
       <div className="text-right flex flex-col items-end">
         <h4 className="text-xl font-bold">
-          {sale_price.toLocaleString("ru")} so'm
+          {Math.floor(sale_price).toLocaleString("ru")} so'm
         </h4>
         <p className="text-gray-600 text-sm mt-1">{month_price}</p>
         <button
