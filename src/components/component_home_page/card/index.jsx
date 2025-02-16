@@ -10,7 +10,7 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
 
   const isLiked = likeList.some((l) => l.id === item.id);
 
-  const imgHeight = Number(imgName) > 95 ? "h-[85%]" : "h-auto my-auto";
+  const imgHeight = Number(imgName) > 95 ? "h-[65%]" : "h-auto my-auto";
 
   return (
     <Card hoverable style={{ width: 240 }}>

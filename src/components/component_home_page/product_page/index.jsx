@@ -229,7 +229,6 @@ function ProductPage() {
       </div>
 
       <div>
-        <h2 className="text-2xl font-bold py-6">Aksessuarlar</h2>
         <div>
           <Aksessuar productId={id} />
         </div>
