@@ -28,7 +28,7 @@ function TopCategoriesPage() {
   }, [slug]);
 
   if (!categories) {
-    return <div>yuklanmoqda</div>;
+    return <div className="text-center font-bold text-xl">Loading...</div>;
   }
   return (
     <div className="container mx-auto px-10">

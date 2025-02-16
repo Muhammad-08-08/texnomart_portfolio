@@ -39,14 +39,16 @@ function CardPage2({
         <div>{quvvati}</div>
       </div>
       <div className="text-right flex flex-col items-end">
-        <h4 className="text-xl font-bold">{sale_price} so'm</h4>
+        <h4 className="text-xl font-bold">
+          {sale_price.toLocaleString("ru")} so'm
+        </h4>
         <p className="text-gray-600 text-sm mt-1">{month_price}</p>
         <button
           onClick={(e) => {
             e.preventDefault();
             savatga_qoshish(item);
           }}
-          className="mt-3 px-4 py-2 border-2 border-amber-400 text-amber-500 rounded-lg hover:bg-amber-100 transition"
+          className="mt-3 px-4 py-2 border-2 border-amber-400 text-amber-500 rounded-lg hover:bg-amber-100 transition cursor-pointer"
         >
           Savatchaga
         </button>

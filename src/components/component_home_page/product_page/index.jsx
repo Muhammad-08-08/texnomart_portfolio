@@ -42,11 +42,11 @@ function ProductPage() {
   const savatga_qoshish = useMyStore((state) => state.savatga_qoshish);
 
   if (!product || !tafsilot) {
-    return <div className="text-center text-lg font-semibold">Loading...</div>;
+    return <div className="text-center font-bold text-xl">Loading...</div>;
   }
 
   return (
-    <div className="container mx-auto px-10 mt-8">
+    <div className="container mx-auto px-10 my-8">
       <div className="flex gap-10 justify-between items-center">
         <div>
           <h2 className="text-2xl font-mono mb-4">{product.name}</h2>
@@ -75,9 +75,6 @@ function ProductPage() {
           ))}
         </div>
         <div className="w-[450px] bg-white p-5 rounded-2xl shadow-lg">
-
-
-          
           <h2 className="text-3xl font-bold">
             {Math.floor(product.sale_price).toLocaleString("ru")}{" "}
             <span className="text-gray-500 text-xl">so'm</span>

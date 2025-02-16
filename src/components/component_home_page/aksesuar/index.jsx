@@ -18,7 +18,7 @@ function Aksessuar({ productId }) {
   }, [productId]);
 
   if (!acsessuar) {
-    return <>Loading...</>;
+    return <div className="text-center font-bold text-xl">Loading...</div>;
   }
 
   return (
