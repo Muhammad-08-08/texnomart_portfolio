@@ -17,7 +17,7 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
       <div className="h-[250px] bg-gray-100 relative">
         <img
           className={`${imgHeight} mx-auto h-full`}
-          alt={imgName}
+           alt={imgName}
           src={imgUrl}
         />
         <FavouriteIcon

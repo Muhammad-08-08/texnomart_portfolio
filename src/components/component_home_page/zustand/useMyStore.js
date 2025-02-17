@@ -3,6 +3,8 @@ import { create } from "zustand";
 const useMyStore = create((set) => ({
   korzina: [],
   like: [],
+  hozirgiQiymat: "price",
+  tartibi: true,
 
   savatga_qoshish: (item) =>
     set((state) => {

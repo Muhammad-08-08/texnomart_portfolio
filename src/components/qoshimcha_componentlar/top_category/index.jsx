@@ -8,23 +8,28 @@ import YaqindaKorilganlar from "../yaqinda_korib_chiqilgan_mahsulotlar";
 import ProductFiltred from "../product_filtred";
 import DashboardSquare01Icon from "../../../assets/dashboard-square-01-stroke-rounded";
 import ListViewIcon from "../../../assets/list-view-stroke-rounded";
+import useMyStore from "../../component_home_page/zustand/useMyStore";
 
 function TopCategoriesPage() {
   const { slug } = useParams();
   const [categories, setCategories] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [filtred, setFiltred] = useState(true);
+  const state = useMyStore();
+  const { tartibi } = state;
 
   useEffect(() => {
     setCategories();
     axios
       .get(
-        `https://gw.texnomart.uz/api/common/v1/search/filters?category_all=${slug}&sort=-order_count&page=${currentPage}`
+        `https://gw.texnomart.uz/api/common/v1/search/filters?category_all=${slug}&sort=${
+          tartibi ? "-" : ""
+        }${state.hozirgiQiymat}&page=${currentPage}`
       )
       .then((response) => {
         setCategories(response.data.data);
       });
-  }, [slug, currentPage]);
+  }, [slug, currentPage, state.hozirgiQiymat, tartibi]);
 
   useEffect(() => {
     setCurrentPage(1);
