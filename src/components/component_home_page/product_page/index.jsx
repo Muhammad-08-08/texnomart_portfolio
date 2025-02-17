@@ -2,8 +2,6 @@ import {
   ArrowDownOutlined,
   ArrowUpOutlined,
   InfoCircleFilled,
-  LeftOutlined,
-  RightOutlined,
 } from "@ant-design/icons";
 import { Carousel } from "antd";
 import axios from "axios";
@@ -11,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useMyStore from "../zustand/useMyStore";
 import Aksessuar from "../../qoshimcha_componentlar/aksesuar";
-import DokonlardaMavjudligi from "../../qoshimcha_componentlar/dokonlarda_mavjudligi";
+import DokonlardaMavjudligi from "../../qoshimcha_componentlar/dokonlarda_mavjudligi"
 import YaqindaKorilganlar from "../../qoshimcha_componentlar/yaqinda_korib_chiqilgan_mahsulotlar";
 import saqlashMahsulot from "../../qoshimcha_componentlar/saqlashMahsulotlar";
 

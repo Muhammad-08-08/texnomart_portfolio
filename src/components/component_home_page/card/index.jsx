@@ -1,6 +1,6 @@
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Card } from "antd";
-import useMyStore from "../../component_home_page/zustand/useMyStore";
+import useMyStore from "../zustand/useMyStore";
 import FavouriteIcon from "../../../assets/favourite-stroke-rounded";
 
 function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
