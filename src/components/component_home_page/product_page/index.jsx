@@ -3,13 +3,13 @@ import {
   ArrowUpOutlined,
   InfoCircleFilled,
 } from "@ant-design/icons";
-import { Carousel } from "antd";
+import { Carousel, Skeleton } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useMyStore from "../zustand/useMyStore";
 import Aksessuar from "../../qoshimcha_componentlar/aksesuar";
-import DokonlardaMavjudligi from "../../qoshimcha_componentlar/dokonlarda_mavjudligi"
+import DokonlardaMavjudligi from "../../qoshimcha_componentlar/dokonlarda_mavjudligi";
 import YaqindaKorilganlar from "../../qoshimcha_componentlar/yaqinda_korib_chiqilgan_mahsulotlar";
 import saqlashMahsulot from "../../qoshimcha_componentlar/saqlashMahsulotlar";
 
@@ -49,7 +49,19 @@ function ProductPage() {
   const savatga_qoshish = useMyStore((state) => state.savatga_qoshish);
 
   if (!product || !tafsilot) {
-    return <div className="text-center font-bold text-xl">Loading...</div>;
+    return (
+      <div className="w-[90%] flex flex-wrap mx-auto gap-10">
+        {Array.from({ length: 8 }).map((_, index) => (
+          <Skeleton.Node
+            key={index}
+            active={true}
+            style={{
+              width: 660,
+            }}
+          />
+        ))}
+      </div>
+    );
   }
 
   return (

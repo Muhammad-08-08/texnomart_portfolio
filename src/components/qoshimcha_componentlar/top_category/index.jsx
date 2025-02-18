@@ -1,4 +1,4 @@
-import { Button, Pagination } from "antd";
+import { Pagination, Radio, Skeleton } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
@@ -9,6 +9,7 @@ import ProductFiltred from "../product_filtred";
 import DashboardSquare01Icon from "../../../assets/dashboard-square-01-stroke-rounded";
 import ListViewIcon from "../../../assets/list-view-stroke-rounded";
 import useMyStore from "../../component_home_page/zustand/useMyStore";
+import SideLeft from "../sideLeft";
 
 function TopCategoriesPage() {
   const { slug } = useParams();
@@ -28,6 +29,7 @@ function TopCategoriesPage() {
       )
       .then((response) => {
         setCategories(response.data.data);
+        console.log(response.data.data);
       });
   }, [slug, currentPage, state.hozirgiQiymat, tartibi]);
 
@@ -36,87 +38,106 @@ function TopCategoriesPage() {
   }, [slug]);
 
   if (!categories) {
-    return <div className="text-center font-bold text-xl">Loading...</div>;
+    return (
+      <div className="w-[90%] flex flex-wrap mx-auto gap-10">
+        {Array.from({ length: 8 }).map((_, index) => (
+          <Skeleton.Node
+            key={index}
+            active={true}
+            style={{
+              width: 660,
+            }}
+          />
+        ))}
+      </div>
+    );
   }
+
   return (
     <div className="container mx-auto px-10">
-      <div>
-        <div className="flex justify-between my-7">
-          <ProductFiltred />
-
-          <div className="flex gap-5">
-            <DashboardSquare01Icon
-              onClick={() => {
-                setFiltred(true);
-              }}
-            />{" "}
-            <ListViewIcon
-              onClick={() => {
-                setFiltred(false);
-              }}
-            />
-          </div>
-        </div>
+      <div className="flex gap-7">
+        <SideLeft categories={categories} />
         <div
-          className={`${
-            filtred ? "flex flex-wrap gap-14.5" : "flex flex-col gap-6 mt-3"
-          }`}
+          className="w-[75%] h-screen overflow-auto"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {filtred
-            ? categories.products.map((item) => {
-                return (
-                  <Link
-                    to={`/top-categoriec/${item.id}`}
-                    key={item.id}
-                    onClick={() => {
-                      window.scrollTo({
-                        behavior: "smooth",
-                        top: 0,
-                      });
-                    }}
-                  >
-                    <CardPage
-                      imgUrl={item.image}
-                      imgName={item.name}
-                      name={item.name}
-                      month_price={item.axiom_monthly_price}
-                      sale_price={item.sale_price}
-                      item={item}
-                    />
-                  </Link>
-                );
-              })
-            : categories.products.map((item) => {
-                return (
-                  <Link
-                    to={`/top-categoriec/${item.id}`}
-                    key={item.id}
-                    onClick={() => {
-                      window.scrollTo({
-                        behavior: "smooth",
-                        top: 0,
-                      });
-                    }}
-                  >
-                    <CardPage2
-                      imgUrl={item.image}
-                      imgName={item.name}
-                      name={item.name}
-                      month_price={item.axiom_monthly_price}
-                      sale_price={item.sale_price}
-                      item={item}
-                      quvvati={item.main_characters.map((i) => {
-                        return (
-                          <div className="flex gap-2 mt-2.5">
-                            <p className="text-sm text-gray-400">{i.name}:</p>
-                            <p className="text-sm text-gray-400">{i.value}</p>
-                          </div>
-                        );
-                      })}
-                    />
-                  </Link>
-                );
-              })}
+          <div className="flex justify-between my-7">
+            <ProductFiltred />
+
+            <div className="flex gap-5">
+              <DashboardSquare01Icon
+                onClick={() => {
+                  setFiltred(true);
+                }}
+              />{" "}
+              <ListViewIcon
+                onClick={() => {
+                  setFiltred(false);
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className={`${
+              filtred ? "grid grid-cols-4 gap-6" : "flex flex-col gap-6 mt-3"
+            }`}
+          >
+            {filtred
+              ? categories.products.map((item) => {
+                  return (
+                    <Link
+                      to={`/top-categoriec/${item.id}`}
+                      key={item.id}
+                      onClick={() => {
+                        window.scrollTo({
+                          behavior: "smooth",
+                          top: 0,
+                        });
+                      }}
+                    >
+                      <CardPage
+                        imgUrl={item.image}
+                        imgName={item.name}
+                        name={item.name}
+                        month_price={item.axiom_monthly_price}
+                        sale_price={item.sale_price}
+                        item={item}
+                      />
+                    </Link>
+                  );
+                })
+              : categories.products.map((item) => {
+                  return (
+                    <Link
+                      to={`/top-categoriec/${item.id}`}
+                      key={item.id}
+                      onClick={() => {
+                        window.scrollTo({
+                          behavior: "smooth",
+                          top: 0,
+                        });
+                      }}
+                    >
+                      <CardPage2
+                        imgUrl={item.image}
+                        imgName={item.name}
+                        name={item.name}
+                        month_price={item.axiom_monthly_price}
+                        sale_price={item.sale_price}
+                        item={item}
+                        quvvati={item.main_characters.map((i) => {
+                          return (
+                            <div className="flex gap-2 mt-2.5">
+                              <p className="text-sm text-gray-400">{i.name}:</p>
+                              <p className="text-sm text-gray-400">{i.value}</p>
+                            </div>
+                          );
+                        })}
+                      />
+                    </Link>
+                  );
+                })}
+          </div>
         </div>
       </div>
 
