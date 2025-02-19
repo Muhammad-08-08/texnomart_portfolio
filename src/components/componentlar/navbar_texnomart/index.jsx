@@ -5,7 +5,6 @@ import {
   MenuOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import Katalog from "../katalog";
 import { useState, useEffect } from "react";
@@ -13,6 +12,7 @@ import useMyStore from "../../component_home_page/zustand/useMyStore";
 import Savatcha from "../savatcha";
 import LikePage from "../like";
 import { Link } from "react-router";
+import LoginModal from "../../qoshimcha_componentlar/loginModal";
 
 function NavbarTexnomart() {
   const [katalog, setKatalog] = useState(false);
@@ -57,10 +57,7 @@ function NavbarTexnomart() {
           />
         </div>
         <div className="flex gap-14 items-center">
-          <div className="flex flex-col items-center">
-            <UserOutlined />
-            <p>Kirish</p>
-          </div>
+          <LoginModal />
 
           <div
             onClick={() => setLikeOyna(true)}

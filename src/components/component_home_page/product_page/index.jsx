@@ -18,8 +18,13 @@ function ProductPage() {
   const [tafsilot, setTafsilot] = useState();
   const [tafsilot2, setTafsilot2] = useState({});
   const [tafsilotHeight, setTafsilotHeight] = useState(false);
-  const [tafsilotHeight2, setTafsilotHeight2] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const { id } = useParams();
+
+  const text = tafsilot2?.data?.data || "";
+  const isLongText = text.length > 500;
+  const displayText =
+    isExpanded || !isLongText ? text : text.slice(0, 500) + "...";
 
   useEffect(() => {
     setProduct();
@@ -224,23 +229,19 @@ function ProductPage() {
       <div className="relative py-2">
         <h3 className="my-4 font-medium text-lg">Tavsif</h3>
         <div>
-          <div
-            className={`w-full my-3 leading-8 ${
-              tafsilotHeight2
-                ? "h-auto py-2"
-                : "h-[100px] overflow-hidden shadow"
-            }`}
-            dangerouslySetInnerHTML={{ __html: tafsilot2?.data?.data }}
-          />
-          <p
-            onClick={() => {
-              setTafsilotHeight2(!tafsilotHeight2);
-            }}
-            className="text-blue-600 absolute bottom-0 cursor-pointer"
-          >
-            {tafsilotHeight2 ? "Qisqacha" : "Batafsil"}
-            {tafsilotHeight2 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-          </p>
+          <div className="w-full my-3 leading-8">
+            <p dangerouslySetInnerHTML={{ __html: displayText }} />
+          </div>
+
+          {isLongText && (
+            <p
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-blue-600 cursor-pointer flex items-center gap-1"
+            >
+              {isExpanded ? "Qisqacha" : "Batafsil"}
+              {isExpanded ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+            </p>
+          )}
         </div>
       </div>
 
