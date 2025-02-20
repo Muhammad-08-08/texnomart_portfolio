@@ -48,7 +48,7 @@ function LikePage({ like, likeKatalog }) {
             })
           ) : (
             <p className="text-center text-gray-500">
-              Sevimlilarda hech narsa yo‘q
+              Sevimlilarda hech narsa yo'q
             </p>
           )}
         </div>
