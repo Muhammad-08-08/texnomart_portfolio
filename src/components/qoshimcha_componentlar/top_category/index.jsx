@@ -40,7 +40,7 @@ function TopCategoriesPage() {
   if (!categories) {
     return (
       <div className="w-[90%] flex flex-wrap mx-auto gap-10">
-        {Array.from({ length: 8 }).map((_, index) => (
+        {Array.from({ length: 10 }).map((_, index) => (
           <Skeleton.Node
             key={index}
             active={true}
