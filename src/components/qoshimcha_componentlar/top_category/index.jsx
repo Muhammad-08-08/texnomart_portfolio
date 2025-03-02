@@ -29,7 +29,6 @@ function TopCategoriesPage() {
       )
       .then((response) => {
         setCategories(response.data.data);
-        console.log(response.data.data);
       });
   }, [slug, currentPage, state.hozirgiQiymat, tartibi]);
 

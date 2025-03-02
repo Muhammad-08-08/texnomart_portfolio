@@ -1,5 +1,5 @@
 import { ArrowLeftOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Input, Modal } from "antd";
+import { Button, Input, message, Modal } from "antd";
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -39,7 +39,6 @@ function LoginModal() {
   }, [ikkinchiModal]);
 
   const onSubmit = (data) => {
-    console.log("Yuborilgan ma'lumot:", data);
     setPhoneInputValue(data.phone);
 
     axios
@@ -47,11 +46,10 @@ function LoginModal() {
         data,
       })
       .then((response) => {
-        console.log("Serverdan javob:", response.data);
         setIkkinchiModal("tasdiqlandi");
       })
       .catch((error) => {
-        console.error("Xatolik yuz berdi:", error);
+        message.error("Xatolik")
       });
   };
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CardPage from "../../component_home_page/card";
 import { Link } from "react-router";
 import saqlashMahsulot from "../saqlashMahsulotlar";
+import { message } from "antd";
 
 function YaqindaKorilganlar() {
   const [yaqindaKorilganMahsulot, setYaqindaKorilganMahsulot] = useState([]);
@@ -24,7 +25,7 @@ function YaqindaKorilganlar() {
         setYaqindaKorilganMahsulot(response.data.data.data);
       })
       .catch((error) => {
-        console.error("API so'rovi xatosi:", error);
+        message.error("Xatolik");
       });
   }, []);
 
