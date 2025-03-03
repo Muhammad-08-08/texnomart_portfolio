@@ -1,3 +1,4 @@
+import { message } from "antd";
 import { create } from "zustand";
 
 const useMyStore = create((set) => ({
@@ -28,8 +29,10 @@ const useMyStore = create((set) => ({
     set((state) => {
       const bor = state.like.find((l) => l.id === item.id);
       if (bor) {
+        message.success("savatchadan olib tashlandi");
         return { like: state.like.filter((l) => l.id !== item.id) };
       } else {
+        message.success("savatchaga qo'shildi");
         return { like: [...state.like, item] };
       }
     }),

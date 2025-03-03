@@ -1,5 +1,5 @@
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { Card } from "antd";
+import { Card, message } from "antd";
 import useMyStore from "../zustand/useMyStore";
 import FavouriteIcon from "../../../assets/favourite-stroke-rounded";
 
@@ -17,7 +17,7 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
       <div className="h-[250px] bg-gray-100 relative">
         <img
           className={`${imgHeight} mx-auto h-full`}
-           alt={imgName}
+          alt={imgName}
           src={imgUrl}
         />
         <FavouriteIcon
@@ -38,6 +38,7 @@ function CardPage({ imgName, imgUrl, name, month_price, sale_price, item }) {
         <button
           onClick={(e) => {
             e.preventDefault(), savatga_qoshish(item);
+            message.success("Savatchaga qo'shildi");
           }}
           className="px-2 py-1 border-2 border-amber-400 rounded-xl cursor-pointer"
         >

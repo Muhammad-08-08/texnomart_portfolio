@@ -16,7 +16,7 @@ function App() {
         <Route path="/top-category/:slug" element={<TopCategoriesPage />} />
         <Route path="/top-categoriec/:id" element={<ProductPage />} />
         <Route path="/acsessuar/:id" element={<ProductPage />} />
-        <Route path="/yaqinda-korilganlar/:id" element={<TopCategoriesPage />} />
+        <Route path="/yaqinda-korilganlar/:id" element={<ProductPage />} />
         <Route
           path="/kategory-bottom-filter/:slug"
           element={<KategoryFilter />}

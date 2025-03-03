@@ -1,6 +1,7 @@
 import React from "react";
 import FavouriteIcon from "../../../assets/favourite-stroke-rounded";
 import useMyStore from "../zustand/useMyStore";
+import { message } from "antd";
 
 function CardPage2({
   imgName,
@@ -47,6 +48,7 @@ function CardPage2({
           onClick={(e) => {
             e.preventDefault();
             savatga_qoshish(item);
+            message.success("Savatchaga qo'shildi")
           }}
           className="mt-3 px-4 py-2 border-2 border-amber-400 text-amber-500 rounded-lg hover:bg-amber-100 transition cursor-pointer"
         >
