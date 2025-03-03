@@ -10,6 +10,7 @@ import DashboardSquare01Icon from "../../../assets/dashboard-square-01-stroke-ro
 import ListViewIcon from "../../../assets/list-view-stroke-rounded";
 import useMyStore from "../../component_home_page/zustand/useMyStore";
 import SideLeft from "../sideLeft";
+import KategoryFilter from "../Kategory-filter";
 
 function TopCategoriesPage() {
   const { slug } = useParams();
@@ -54,6 +55,7 @@ function TopCategoriesPage() {
 
   return (
     <div className="container mx-auto px-10">
+      <KategoryFilter />
       <div className="flex gap-7">
         <SideLeft categories={categories} />
         <div

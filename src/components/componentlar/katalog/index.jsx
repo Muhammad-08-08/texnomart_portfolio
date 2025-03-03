@@ -1,6 +1,7 @@
 import { Spin } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 function Katalog() {
   const [katalogApi, setKatalogApi] = useState([]);
@@ -17,7 +18,7 @@ function Katalog() {
 
   if (!katalogApi.length) {
     return (
-      <div className="w-full h-screen fixed top-0 left-0 flex justify-center items-center bg-white/70">
+      <div className="w-full h-screen flex justify-center items-center bg-white/70">
         <Spin size="large" />
       </div>
     );
@@ -52,12 +53,14 @@ function Katalog() {
                   </h3>
                   <ul className="space-y-1">
                     {child.childs.map((nomi) => (
-                      <li
-                        key={nomi.id}
-                        className="text-sm text-gray-600 hover:text-amber-500 cursor-pointer transition"
-                      >
-                        {nomi.name}
-                      </li>
+                      <Link to={"/kategory-bottom-filter"}>
+                        <li
+                          key={nomi.id}
+                          className="text-sm text-gray-600 hover:text-amber-500 cursor-pointer transition"
+                        >
+                          {nomi.name}
+                        </li>
+                      </Link>
                     ))}
                   </ul>
                 </div>
